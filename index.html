@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily journal</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="header">
+        <img alt="front cover of a composition notebook"src="https://m.media-amazon.com/images/I/61o+KbqNiuL._AC_SS350_.jpg">
+        <div><h1>Daily journal</h1></div>
+        <div><h2>Austin Ring</h2></div>
+    </header>
+    <main class="main">
+        <form action="">
+        <section class="forum">
+            <h3>Journal Entry</h3>
+            <fieldset>
+                <label for="concept">Concept Covered</label>
+            <input type="text" name="concept" id="concept">
+            </fieldset>
+            <fieldset>
+            <label for="date">Date of entry</label>
+            <input type="date" name="date" id="date">
+        </fieldset>
+        <fieldset>
+            <lable for="mood">Mood</lable>
+            <select name="mood" id="mood">
+                <option value="happy">Happy</option>
+                <option value="neutral">Neutral</option>
+                <option value="sad">Sad</option>
+                <option value="frustrated">Frustrated</option>
+                <option value="content">Content</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <lable for="enter">Record Journal Entry</lable>
+            <input type="submit" value="submit" name="enter" id="submit">
+        </fieldset>
+        <fieldset>
+            <lable for="entry">Journal Entry</lable>
+            <textarea name="entry" id="entry">Enter text here</textarea>
+        </fieldset>
+        </section>
+        </form>
+        <h3>Previous Journal entries</h3>
+    </main>
+    <footer class="footer">
+        <div>Austin Ring</div>
+        <div><a href="#">github</a></div>
+        <div>copyright</div>
+    </footer>
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>
