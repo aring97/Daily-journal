@@ -1,42 +1,28 @@
-/*
- *   Journal data provider for Daily Journal application
- *
- *      Holds the raw data about each entry and exports
- *      functions that other modules can use to filter
- *      the entries for different purposes.
- */
+let entries=[]
+const eventHub=document.querySelector(".main")
 
-// This is the original data.
-const journal = [
-    {
-        id: 1,
-        date: "07/8/202",
-        concept: "HTML & CSS",
-        entry: "We talked about HTML components and how to make grid layouts with Flexbox in CSS.",
-        mood: "Ok"
-    },{
-        id: 2,
-        date: "07/10/2020",
-        concept: "Complex Flexbox",
-        entry: "I tried to have an element in my Flexbox layout also be another Flexbox layout. It hurt my brain. I hate Steve.",
-        mood: "Sad"
-    },{
-        id: 3,
-        date: "07/14/2020",
-        concept: "General thoughts",
-        entry: "The class overall is a little boring and i dont like working in teams. But I know it is going to be very helpful in the end.",
-        mood: "content"
-    }
-]
+export const getEntries=()=>{
+    return fetch("http://localhost:3000/entries")
+    .then(entrys=>entrys.json())
+    .then(entry=>{entries=entry})
+}
 
-/*
-    You export a function that provides a version of the
-    raw data in the format that you want
-*/
 export const useJournalEntries = () => {
-    const sortedByDate = journal.sort(
-        (currentEntry, nextEntry) =>
-            Date.parse(currentEntry.date) - Date.parse(nextEntry.date)
-    )
-    return sortedByDate
+    return entries
+}
+
+const dispatchStateChangeEvent = () => {
+    eventHub.dispatchEvent(new CustomEvent("journalStateChanged"))
+}
+export const saveJournalEntry=(entryObj)=>{
+    //use fetch with the Post method to add your entry to your API
+    fetch("http://localhost:3000/entries", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(entryObj)
+    })
+    .then(getEntries)
+    .then(dispatchStateChangeEvent)
 }
